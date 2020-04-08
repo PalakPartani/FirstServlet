@@ -7,16 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(
         description = "Login servlet testing",
-        urlPatterns=("/loginServlet"),
-        initParams={
-@WebInitParam(name = "user", value = "Palak"),
-@WebInitParam(name = "pwd", value = "plk")
-        }
+        urlPatterns = ("/loginServlet")
+
 )
 
 public class LoginServlet extends HttpServlet {
@@ -25,8 +23,12 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String user = req.getParameter("user");
         String pwd = req.getParameter("pwd");
-        String userId = getServletConfig().getInitParameter("user");
-        String password = getServletConfig().getInitParameter("pwd");
+
+        HttpSession session = req.getSession();
+        String userId = (String) session.getAttribute("user");
+
+        HttpSession session1 = req.getSession();
+        String password = (String) session1.getAttribute("pwd");
 
         if (userId.equals(user) && (password.equals(pwd))) {
             req.setAttribute("user", user);

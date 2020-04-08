@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @WebServlet(
         description = "Login servlet testing",
@@ -21,7 +19,7 @@ import java.util.regex.Pattern;
 )
 
 public class ValidateUserNameServlet extends HttpServlet {
-     String REGEX_NAME = "[A-Z]{1}[A-Za-z]{2,}";
+    String REGEX_NAME = "[A-Z]{1}[A-Za-z]{2,}";
     String REGEX_PASSWORD = "^((?=[^\\W\\_]*[\\W\\_][^\\W\\_]*$)(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9\\W\\_]{8,})$";
 
     @Override
